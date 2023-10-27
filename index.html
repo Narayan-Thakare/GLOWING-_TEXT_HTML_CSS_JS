@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuous Text Glow</title>
+    <style>
+        :root {
+            --k: 0;
+        }
+
+        body {
+            display: grid;
+            place-content: center;
+            background: #000;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            --k: 0;
+            background: linear-gradient(90deg, hsl(var(--k, 0), 95%, 65%), hsl(calc(var(--k)*360), 95%, 65%));
+            -webkit-background-clip: text;
+            color: transparent;
+            font: 900 clamp(.875em, 7.25vw, 5em) arial black, sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Continuous Text Glow</h1>
+    </div>
+    <script>
+        // JavaScript code to continuously change the hue
+        const textElement = document.querySelector("h1");
+        let hue = 0;
+
+        function updateHue() {
+            textElement.style.setProperty("--k", hue);
+            hue = (hue + 1) % 360; // Increment the hue value (0-359) to create a color shift effect
+            requestAnimationFrame(updateHue);
+        }
+
+        updateHue();
+    </script>
+</body>
+</html>
